@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 
 export default (WrappedComponent) => {
-  return class extends React.Component {
+  return class WithDataFetching extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
         data: [],
         loading: true,
-        error: ""
-      }
+        error: "",
+      };
     }
 
     async componentDidMount() {
@@ -18,13 +18,13 @@ export default (WrappedComponent) => {
         if (ticketsJSON) {
           this.setState({
             data: ticketsJSON,
-            loading: false
-          }) 
+            loading: false,
+          });
         }
-      } catch(error) {
+      } catch (error) {
         this.setState({
-          error: error.message
-        })
+          error: error.message,
+        });
       }
     }
 
@@ -32,13 +32,8 @@ export default (WrappedComponent) => {
       const { data, loading, error } = this.state;
 
       return (
-        <WrappedComponent
-          data={data}
-          loading={loading}
-          error={error}
-          {...this.props}
-        />
-      )
+        <WrappedComponent data={data} loading={loading} error={error} {...this.props} />
+      );
     }
-  }
-}
+  };
+};

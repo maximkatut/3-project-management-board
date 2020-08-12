@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import Ticket from '../Ticket/Ticket';
+import Ticket from "../Ticket/Ticket";
 
 const LaneWrapper = styled.div`
   list-style: none;
@@ -38,7 +38,9 @@ const Lane = ({ tickets, error, loading, title }) => (
     <Title>{title}</Title>
     {(loading || error) && <Alert>{loading ? "Loading..." : error}</Alert>}
     <TicketsWrapper>
-      {tickets.map(ticket => <Ticket key={ticket.id} ticket={ticket}/>)}
+      {tickets.map((ticket) => (
+        <Ticket key={ticket.id} ticket={ticket} />
+      ))}
     </TicketsWrapper>
   </LaneWrapper>
 );

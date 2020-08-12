@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import Board from './Board';
-import Header from '../components/Header/Header';
+import React, { Component } from "react";
+import styled, { createGlobalStyle } from "styled-components";
+import Board from "./Board";
+import Header from "../components/Header/Header";
 import { lanes } from "../const";
 
 const GlobalStyle = createGlobalStyle`
@@ -27,7 +27,7 @@ class App extends Component {
         <GlobalStyle />
         <AppWrapper>
           <Header />
-          <Board lanes={lanes}/>
+          <Board lanes={lanes} />
         </AppWrapper>
       </>
     );

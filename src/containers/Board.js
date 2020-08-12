@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import Lane from '../components/Lane/Lane';
-import withDataFetching from '../hocs/withDataFetching';
+import React from "react";
+import styled from "styled-components";
+import Lane from "../components/Lane/Lane";
+import withDataFetching from "../hocs/withDataFetching";
 
 const BoardWrapper = styled.div`
   display: flex;
@@ -15,19 +15,19 @@ const BoardWrapper = styled.div`
 `;
 
 const Board = ({ data, loading, error, lanes }) => {
-    return (
-      <BoardWrapper>
-        {lanes.map(lane => (
-          <Lane
-            key={lane.id}
-            title={lane.title}
-            loading={loading}
-            tickets={data.filter(ticket => ticket.lane === lane.id)}
-            error={error}
-          />
-        ))}
-      </BoardWrapper>
-    );
-  }
+  return (
+    <BoardWrapper>
+      {lanes.map((lane) => (
+        <Lane
+          key={lane.id}
+          title={lane.title}
+          loading={loading}
+          tickets={data.filter((ticket) => ticket.lane === lane.id)}
+          error={error}
+        />
+      ))}
+    </BoardWrapper>
+  );
+};
 
 export default withDataFetching(Board);
