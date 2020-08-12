@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Lane from '../components/Lane/Lane';
+import withDataFetching from '../hocs/withDataFetching';
 
 const BoardWrapper = styled.div`
   display: flex;
@@ -13,23 +14,20 @@ const BoardWrapper = styled.div`
   }
 `;
 
-class Board extends Component {
-  render() {
-    const lanes = [
-      { id: 1, title: 'To Do' },
-      { id: 2, title: 'In Progress' },
-      { id: 3, title: 'Review' },
-      { id: 4, title: 'Done' },
-    ];
-
+const Board = ({ data, loading, error, lanes }) => {
     return (
       <BoardWrapper>
         {lanes.map(lane => (
-          <Lane key={lane.id} title={lane.title} />
+          <Lane
+            key={lane.id}
+            title={lane.title}
+            loading={loading}
+            tickets={data.filter(ticket => ticket.lane === lane.id)}
+            error={error}
+          />
         ))}
       </BoardWrapper>
     );
   }
-}
 
-export default Board;
+export default withDataFetching(Board);
