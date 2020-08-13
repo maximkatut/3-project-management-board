@@ -27,7 +27,7 @@ class App extends Component {
         <GlobalStyle />
         <AppWrapper>
           <Header />
-          <Board lanes={lanes} />
+          <Board lanes={lanes} dataSource="../../assets/data.json" />
         </AppWrapper>
       </>
     );

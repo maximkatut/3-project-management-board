@@ -1,7 +1,7 @@
 import React from "react";
 
 export default (WrappedComponent) => {
-  return class WithDataFetching extends React.Component {
+  class WithDataFetching extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -13,7 +13,7 @@ export default (WrappedComponent) => {
 
     async componentDidMount() {
       try {
-        const tickets = await fetch("../../assets/data.json");
+        const tickets = await fetch(this.props.dataSource);
         const ticketsJSON = await tickets.json();
         if (ticketsJSON) {
           this.setState({
@@ -35,5 +35,9 @@ export default (WrappedComponent) => {
         <WrappedComponent data={data} loading={loading} error={error} {...this.props} />
       );
     }
-  };
+  }
+
+  WithDataFetching.displayName = `WithDataFetching(${WrappedComponent.name})`;
+
+  return WithDataFetching;
 };
